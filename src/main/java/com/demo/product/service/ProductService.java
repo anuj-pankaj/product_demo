@@ -111,6 +111,22 @@ public class ProductService {
 		}
 		
 		return new ProductResponse(HttpStatus.OK, "Sold Product from stocks ", new ArrayList<>(),productSoldMap);
-
 	}
+	
+	
+	/**
+	 * Returns All products sold as well as non sold products for the all users and products are mapped with user email Id
+	 * @return ProductResponse
+	 */
+	
+	public ProductResponse getAllProducts() {
+		
+		Map<String, List<Product>>  productsMap = new HashMap<>();
+		productsMap.put("Available prodcut stock", getSellableProducts());
+		productsMap.putAll(getSoldProducts().getProductMap());
+		
+		
+		return new ProductResponse(HttpStatus.OK, "Sold Product from stocks ", new ArrayList<>(),productsMap);
+	}
+	
 }

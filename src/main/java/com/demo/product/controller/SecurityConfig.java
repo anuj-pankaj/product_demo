@@ -1,7 +1,8 @@
-package com.demo.product;
+package com.demo.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,6 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
          .csrf().disable()
          .authorizeRequests()
          .antMatchers("/productdemo/sold").access("hasRole('ROLE_ADMIN')")
+         .antMatchers("/productdemo/all").access("hasRole('ROLE_ADMIN')")
+         .antMatchers(HttpMethod.PUT).access("hasRole('ROLE_USER')")
          .and()
          .httpBasic();
     }

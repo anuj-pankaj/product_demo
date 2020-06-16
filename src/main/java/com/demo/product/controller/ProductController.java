@@ -54,6 +54,10 @@ public class ProductController {
 		return productService.getSoldProducts();
 	}
 	
+	@GetMapping("/all")
+	public ProductResponse getAllProducts() {
+		return  productService.getAllProducts();
+	}
 	
 	
 }
